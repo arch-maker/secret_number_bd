@@ -45,11 +45,9 @@ def result():
 
     user = db.query(User).filter_by(email=email_addr).first()
 
-    sn = user.secret_number
+    if num_user == user.secret_number:
 
-    if num_user == sn:
         mensaje = "Enhorabuena!! El numero correcto es: " + str(num_user)
-        return render_template("result.html", mensaje=mensaje)
 
         new_secret = random.randint(1, 30)
 
@@ -58,11 +56,13 @@ def result():
         db.add(user)
         db.commit()
 
-    elif num_user > sn:
+        return render_template("result.html", mensaje=mensaje)
+
+    elif num_user > user.secret_number:
         mensaje = "Tu numero no es correcto! Intentalo con uno mas pequeño!"
         return render_template("result.html", mensaje=mensaje)
 
-    elif num_user < sn:
+    elif num_user < user.secret_number:
         mensaje = "Tu numero no es correcto! Intentalo con uno mas grande!"
         return render_template("result.html", mensaje=mensaje)
 
