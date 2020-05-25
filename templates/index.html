@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    {% if user %}
+    {% if user and user.secret_number %}
         <form action="/result" method="post" >
             <input type="text" name="num_user" placeholder="adivina el numero">
             <br>
