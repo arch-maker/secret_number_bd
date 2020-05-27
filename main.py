@@ -14,7 +14,7 @@ def index():
     token_session = request.cookies.get("token_session")
 
     if token_session:
-        user = db.query(User).filter_by(token_session=token_session, delete=False).first()
+        user = db.query(User).filter_by(token_session=token_session).first()
 
     else:
         user = None
@@ -125,7 +125,7 @@ def profile_edit():
                 user.password = h_new_password
 
             else:
-                return "Operacion incorrecta! Su antigua contraseña es invalida"
+                return "Operacion incorrecta! Su antigua contraseña no es correcta"
 
         user.name = name
         user.email = email
