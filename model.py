@@ -12,3 +12,5 @@ class User(db.Model):
     password = db.Column(db.String)
     token_session = db.Column(db.String)
     delete = db.Column(db.Boolean, default=False)
+
+# Codigo de Model.py
